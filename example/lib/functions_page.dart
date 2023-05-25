@@ -34,7 +34,7 @@ class FunctionsPageState extends State<FunctionsPage>
   bool get hasResult => result != null;
   String? _devicesRegionCode;
 
-  Future<void> parse() async {
+  void parse() async {
     setState(() => result = null);
     if (key.currentState!.validate()) {
       dismissKeyboard(context);
@@ -44,7 +44,7 @@ class FunctionsPageState extends State<FunctionsPage>
     }
   }
 
-  Future<void> format() async {
+  void format() async {
     if (key.currentState!.validate()) {
       dismissKeyboard(context);
       final formatted = await widget.store.format(numberCtrl.text, region!);
@@ -55,7 +55,7 @@ class FunctionsPageState extends State<FunctionsPage>
     }
   }
 
-  Future<void> fetchDevicesRegionCode() async {
+  void fetchDevicesRegionCode() async {
     final code = await widget.store.carrierRegionCode();
     setState(() => _devicesRegionCode = code);
   }
@@ -69,7 +69,7 @@ class FunctionsPageState extends State<FunctionsPage>
     setState(() {});
   }
 
-  Future<void> chooseRegions() async {
+  void chooseRegions() async {
     dismissKeyboard(context);
 
     final regions = await widget.store.getRegions();
@@ -166,7 +166,7 @@ class FunctionsPageState extends State<FunctionsPage>
     );
   }
 
-  Future<void> validate() async {
+  void validate() async {
     if (key.currentState!.validate()) {
       dismissKeyboard(context);
 

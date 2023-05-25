@@ -55,7 +55,7 @@ class AutoformatPageState extends State<AutoformatPage>
     });
   }
 
-  Future<void> chooseRegions() async {
+  void chooseRegions() async {
     dismissKeyboard(context);
 
     final regions = await widget.store.getRegions();

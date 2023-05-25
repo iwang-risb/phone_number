@@ -88,7 +88,7 @@ class PhoneNumberEditingController extends TextEditingController {
   @override
   set value(TextEditingValue newValue) => _formatAndSet(value, newValue);
 
-  Future<void> _formatAndSet(
+  void _formatAndSet(
       TextEditingValue oldValue, TextEditingValue newValue) async {
     // Ignore invalid selections
     if (!newValue.selection.isValid) {

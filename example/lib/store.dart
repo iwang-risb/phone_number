@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/services.dart';
@@ -12,7 +13,7 @@ class Store {
 
   List<Region>? _regions;
 
-  Future<List<Region>> getRegions() async {
+  FutureOr<List<Region>> getRegions() async {
     if (_regions == null) {
       final regions = await plugin.allSupportedRegions();
 
@@ -27,7 +28,7 @@ class Store {
     return _regions ?? [];
   }
 
-  Future<ParseResult> parse(String string, {Region? region}) async {
+  FutureOr<ParseResult> parse(String string, {Region? region}) async {
     log("parse $string for region: ${region?.code}");
     try {
       final result = await plugin.parse(string, regionCode: region?.code);
@@ -37,7 +38,7 @@ class Store {
     }
   }
 
-  Future<String?> format(String string, Region region) async {
+  FutureOr<String?> format(String string, Region region) async {
     log("format $string for region: ${region.code}");
     try {
       final result = await plugin.format(string, region.code);
@@ -47,7 +48,7 @@ class Store {
     }
   }
 
-  Future<bool> validate(String string, {Region? region}) async {
+  FutureOr<bool> validate(String string, {Region? region}) async {
     log("validate $string for region: ${region?.code}");
     try {
       final result = await plugin.validate(string, regionCode: region?.code);
@@ -58,7 +59,7 @@ class Store {
     }
   }
 
-  Future<String?> carrierRegionCode() async {
+  FutureOr<String?> carrierRegionCode() async {
     log("fetching carrierRegionCode");
     try {
       final result = await plugin.carrierRegionCode();

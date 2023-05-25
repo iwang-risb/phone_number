@@ -21,7 +21,7 @@ class PhoneNumberUtil {
   ///
   /// Returns [PhoneNumber] object corresponds to [phoneNumberString] if [phoneNumberString] is valid
   /// Throws [PlatformException] if [phoneNumberString] is invalid
-  Future<PhoneNumber> parse(
+  FutureOr<PhoneNumber> parse(
     String phoneNumberString, {
     String? regionCode,
   }) async {
@@ -45,7 +45,7 @@ class PhoneNumberUtil {
 
   /// Returns a [Map] with the keys set to each item in [phoneNumberStrings] and the value to
   /// the corresponding result of a parse operation for that item. See [parse] for details.
-  Future<Map<String, PhoneNumber>> parseList(
+  FutureOr<Map<String, PhoneNumber>> parseList(
     List<String> phoneNumberStrings, {
     String? regionCode,
   }) async {
@@ -76,7 +76,7 @@ class PhoneNumberUtil {
   ///
   ///Return formatted phone number
   /// Throws [PlatformException] if [phoneNumberString] is invalid
-  Future<String> format(
+  FutureOr<String> format(
     String phoneNumberString,
     String regionCode,
   ) async {
@@ -103,7 +103,7 @@ class PhoneNumberUtil {
   /// Returns true if [phoneNumberString] is valid otherwise return false
   ///
   /// Optional [regionCode] to validate number in specific region
-  Future<bool> validate(
+  FutureOr<bool> validate(
     String phoneNumberString, {
     String? regionCode,
   }) async {
@@ -120,7 +120,7 @@ class PhoneNumberUtil {
 
   /// Returns a [List] of [RegionInfo] of all supported regions.
   /// Optionally pass the [locale] identifier for translating the names.
-  Future<List<RegionInfo>> allSupportedRegions({String? locale}) async {
+  FutureOr<List<RegionInfo>> allSupportedRegions({String? locale}) async {
     final result =
         await _channel.invokeListMethod<Map>('get_all_supported_regions', {
       'locale': locale,
@@ -133,6 +133,6 @@ class PhoneNumberUtil {
   }
 
   /// Return the region code for the device's phone number.
-  Future<String> carrierRegionCode() async =>
+  FutureOr<String> carrierRegionCode() async =>
       await _channel.invokeMethod('carrier_region_code') ?? '';
 }
